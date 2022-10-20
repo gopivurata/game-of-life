@@ -1,14 +1,10 @@
 pipeline {
     agent  { label 'NODE' }
     triggers { pollSCM('* * * * *') }
-    parameters {
-        choice(name: 'BRANCH_TO_BUILD', choices: ['master', 'my_branch'], description: 'Branch to build')
-
-    }
     stages {
         stage('git') {
             steps {
-                git branch: "${params.BRANCH_TO_BUILD}", url: 'https://github.com/gopivurata/game-of-life.git'
+                git branch: 'my_branch', url: 'https://github.com/gopivurata/game-of-life.git'
             }
 
         }
