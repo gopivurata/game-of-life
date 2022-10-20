@@ -10,7 +10,7 @@ pipeline {
         }
         stage('build') {
             steps {
-                sh '/usr/share/maven/bin/mvn package'
+                sh '/usr/share/maven/mvn package'
             }
         }
         stage('archive results') {
