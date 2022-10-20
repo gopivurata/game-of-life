@@ -1,12 +1,12 @@
 pipeline {
-    agent  { label 'NODE' }
+    agent  { label 'NODE-1' }
+     tools {
+                jdk 'JAVA-8'
+            }
+    triggers { pollSCM('* * * * *') }
     parameters {
         choice(name: 'BRANCH_TO_BUILD', choices: ['master', 'my_branch'], description: 'adedd branchess')
-        string(name: 'MAVEN_GOAL', defaultValue: 'clean package', description: 'build package')
-    }
-    triggers {
-        pollSCM('* * * * *')
-    }
+        string(name: 'build', defaultValue: 'package', description: 'code build') }
     stages {
         stage('git') {
             steps {
@@ -17,7 +17,7 @@ pipeline {
         }
         stage('build') {
             steps {
-                sh "/usr/share/maven/bin/mvn ${params.MAVEN_GOAL}"
+                sh "mvn ${params.build}"
             }
         }
         stage('archive results') {
