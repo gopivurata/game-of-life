@@ -2,7 +2,7 @@ pipeline {
     agent  { label 'NODE' }
     parameters {
         choice(name: 'BRANCH_TO_BUILD', choices: ['master', 'my_branch'], description: 'adedd branchess')
-        string(name: 'MAVEN_GOAL', defaultValue: 'package', description: 'build package')
+        string(name: 'MAVEN_GOAL', defaultValue: 'clean package', description: 'build package')
     }
     triggers {
         pollSCM('* * * * *')
