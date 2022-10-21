@@ -1,5 +1,5 @@
 pipeline {
-    agent  { label 'NODE-1' }
+    agent  { label 'NODE' }
      tools {
                 jdk 'JAVA-8'
             }
