@@ -3,6 +3,7 @@ pipeline {
      tools {
                 jdk 'JAVA-8'
             }
+    triggers { pollSCM('* * * * *') }
     parameters {
         choice(name: 'BRANCH_TO_BUILD', choices: ['master', 'my_branch'], description: 'adedd branchess')
         string(name: 'build', defaultValue: 'package', description: 'code build') }
