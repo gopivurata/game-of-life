@@ -1,6 +1,6 @@
 pipeline {
     agent  { label 'NODE' }
-    triggers { pollSCM('* * * * *') }
+    triggers { pollSCM('0 * * * *') }
      tools {
                 jdk 'JAVA-8'
             }
