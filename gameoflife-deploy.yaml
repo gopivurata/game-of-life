@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-gameoflife
+spec:
+  minReadySeconds: 10
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gameoflife
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: gameoflife
+      name: gameoflife-pod
+    spec:
+      containers:
+        - image: gopivurata/gameoflife:1.0
+          name: my-gameoflife-container
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            exec:
+              command:
+                - touch
+                - test.py
+          command:
+            - catalina.sh
+            - run
+            - 0.0.0.0:8080
